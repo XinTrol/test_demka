@@ -1,0 +1,84 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="using:demka_podg1.ViewModels"
+			 x:DataType="vm:AddOrEditProductsViewModel"
+			 x:Class="demka_podg1.Views.AddOrEditProductsView">
+	<Grid RowDefinitions="Auto, *">
+
+		<Border Grid.Row="0" Background="Gray">
+			<Grid ColumnDefinitions="*,*,*">
+
+				<TextBlock Text="{Binding CurrentUser.Name}"
+						   HorizontalAlignment="Center"
+						   Grid.Column="1"
+						   Margin="10"
+						   VerticalAlignment="Center"/>
+
+				<Button Content="Выйти"
+						Background="Red"
+						Command="{Binding LogoutCommand}"
+						HorizontalAlignment="Right"
+						Grid.Column="2"
+						Margin="10"/>
+			</Grid>
+		</Border>
+
+		<ScrollViewer Grid.Row="1">
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10" Width="300">
+				<TextBox Watermark="Артикул" Text="{Binding Product.Id}"/>
+
+				<ComboBox ItemsSource="{Binding ProductCategories}"
+						  SelectedValue="{Binding Product.ProductCategoryId}"
+						  SelectedValueBinding="{Binding Id}"
+						  DisplayMemberBinding="{Binding CategoeyName}"
+						  PlaceholderText="Вид товара"
+						  HorizontalAlignment="Stretch"/>
+
+				<ComboBox ItemsSource="{Binding Units}"
+						  SelectedValue="{Binding Product.UnitsId}"
+						  SelectedValueBinding="{Binding Id}"
+						  DisplayMemberBinding="{Binding Unit1}"
+						  PlaceholderText="Ед. измерения"
+						  HorizontalAlignment="Stretch"/>
+
+				<TextBox Watermark="Цена" Text="{Binding Product.Price}"/>
+
+				<ComboBox ItemsSource="{Binding Suppliers}"
+						  SelectedValue="{Binding Product.SupplierId}"
+						  SelectedValueBinding="{Binding Id}"
+						  DisplayMemberBinding="{Binding Supplier1}"
+						  PlaceholderText="Поставщик"
+						  HorizontalAlignment="Stretch"/>
+
+				<ComboBox ItemsSource="{Binding Manufacurers}"
+						  SelectedValue="{Binding Product.ManufacturerId}"
+						  SelectedValueBinding="{Binding Id}"
+						  DisplayMemberBinding="{Binding Manufacurer1}"
+						  PlaceholderText="Производитель"
+						  HorizontalAlignment="Stretch"/>
+
+				<ComboBox ItemsSource="{Binding Genders}"
+						  SelectedValue="{Binding Product.GenderType}"
+						  SelectedValueBinding="{Binding Id}"
+						  DisplayMemberBinding="{Binding GenderName}"
+						  PlaceholderText="Пол"
+						  HorizontalAlignment="Stretch"/>
+
+				<TextBox Watermark="Скидка" Text="{Binding Product.Discount}"/>
+				<TextBox Watermark="Кол-во на складе" Text="{Binding Product.UnitInStock}"/>
+				<TextBox Watermark="Описание" Text="{Binding Product.Description}"/>
+				<TextBox Watermark="Название файла фото" Text="{Binding Product.Photo}"/>
+
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+					<Button Content="Отмена" Command="{Binding CancelCommand}"/>
+					<Button Content="Сохранить" Command="{Binding SaveCommand}"/>
+				</StackPanel>
+
+			</StackPanel>
+		</ScrollViewer>
+
+	</Grid>
+</UserControl>

@@ -1,0 +1,105 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="using:demka_podg1.ViewModels"
+			 x:DataType="vm:ProductViewModel"
+			 x:Name="Items"
+			 x:Class="demka_podg1.Views.ProductView">
+	<Grid RowDefinitions="Auto, Auto, *">
+
+		<Border Grid.Row="0" Background="Gray">
+			<Grid ColumnDefinitions="*,*,*">
+
+				<TextBlock Text="{Binding CurrentUser.Name}"
+						   HorizontalAlignment="Center"
+						   Grid.Column="1"
+						   Margin="10"
+						   VerticalAlignment="Center"/>
+
+				<Button Content="Выйти"
+						Background="Red"
+						Command="{Binding LogoutCommand}"
+						HorizontalAlignment="Right"
+						Grid.Column="2"
+						Margin="10"/>
+			</Grid>
+		</Border>
+
+		<StackPanel Orientation="Horizontal"
+					Grid.Row="1"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					IsVisible="{Binding !IsGuest}">
+
+			<TextBox Watermark="Поиск"
+					 Text="{Binding SearchText}"
+					 Width="300"
+					 Margin="10"/>
+
+			<ComboBox ItemsSource="{Binding PriceFilter}"
+					  SelectedItem="{Binding SelectedPriceFilter}"
+					  Margin="10"/>
+
+			<ComboBox ItemsSource="{Binding CountInStockFilter}"
+					  SelectedItem="{Binding SelectedCountInStockFilter}"
+					  Margin="10"/>
+
+			<ComboBox ItemsSource="{Binding DiscountFilter}"
+					  SelectedItem="{Binding SelectedDiscountFilter}"
+					  Margin="10"/>
+
+			<Button Content="Добавить товар" 
+					Command="{Binding CreateCommand}" 
+					Margin="10"
+					IsVisible="{Binding IsAdmin}"/>
+		</StackPanel>
+
+		<ScrollViewer Grid.Row="3">
+			<ItemsControl ItemsSource="{Binding Products}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel>
+							<Border BorderBrush="Black" BorderThickness="1" Margin="10">
+								<Grid ColumnDefinitions="2*,5*,3*">
+									<Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="10">
+										<Image Source="{Binding PhotoPath}" Height="80"/>
+									</Border>
+									<Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" Margin="10">
+										<StackPanel>
+											<TextBlock Text="{Binding CardName}"/>
+											<TextBlock Text="{Binding Description, StringFormat='Описание товара: {0}'}"/>
+											<TextBlock Text="{Binding Manufacturer.Manufacurer1, StringFormat='Производитель: {0}'}"/>
+											<TextBlock Text="{Binding Supplier.Supplier1, StringFormat='Поставщик: {0}'}"/>
+											<TextBlock Text="{Binding Price, StringFormat='Цена: {0}'}"/>
+											<TextBlock Text="{Binding Units.Unit1}"/>
+											<TextBlock Text="{Binding UnitInStock, StringFormat='Кол-во на складе: {0}'}"/>
+										</StackPanel>
+									</Border>
+									<Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" Margin="10">
+										<TextBlock Text="{Binding Discount, StringFormat=' {0}%'}"
+												   FontSize="30"
+												   HorizontalAlignment="Center"
+												   VerticalAlignment="Center"/>
+									</Border>
+								</Grid>
+							</Border>
+							<StackPanel Orientation="Horizontal">
+								<Button Margin="10" 
+										Content="Редактировать" 
+										Command="{Binding #Items.DataContext.EditCommand}"
+										CommandParameter="{Binding Id}"
+										IsVisible="{Binding #Items.DataContext.IsAdmin}"/>
+
+							</StackPanel>
+							
+						</StackPanel>
+
+
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+	</Grid>
+</UserControl>
