@@ -1,4 +1,5 @@
-﻿using Avalonia.Media.Imaging;
+﻿using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using System;
 using System.Collections.Generic;
@@ -52,4 +53,26 @@ public partial class Product
             return new Bitmap(AssetLoader.Open(uri));
         }
     }
+    public IBrush RowBackground
+    {
+        get
+        {
+            if (UnitInStock == 0)
+                return new SolidColorBrush(Colors.LightBlue);
+            if (Discount > 15)
+                return new SolidColorBrush(Color.Parse("#2E8B57"));
+            return Brushes.Transparent;
+        }
+    }
+
+    // итоговая цена со скидкой
+    public decimal FinalPrice => Discount > 0
+        ? (Price ?? 0) * (1 - (decimal)Discount / 100)
+        : (Price ?? 0);
+
+    // перечёркивание основной цены если есть скидка (не работает)
+    public string PriceDecorations => Discount > 0 ? "Strikethrough" : "None";
+
+    // показывать итоговую цену только если есть скидка
+    public bool HasDiscount => Discount > 0;
 }
