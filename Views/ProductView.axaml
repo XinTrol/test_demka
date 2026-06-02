@@ -86,17 +86,19 @@
 								</Grid>
 							</Border>
 							<StackPanel Orientation="Horizontal">
-								<Button Margin="10" 
+								<Button Margin="10,0,0,10"										
 										Content="Редактировать" 
 										Command="{Binding #Items.DataContext.EditCommand}"
 										CommandParameter="{Binding Id}"
 										IsVisible="{Binding #Items.DataContext.IsAdmin}"/>
+								<Button Margin="10,0,0,10" 
+										Content="Удалить" 
+										Command="{Binding #Items.DataContext.DeleteCommand}"
+										CommandParameter="{Binding Id}"
+										IsVisible="{Binding #Items.DataContext.IsAdmin}"/>
 
 							</StackPanel>
-							
 						</StackPanel>
-
-
 					</DataTemplate>
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>

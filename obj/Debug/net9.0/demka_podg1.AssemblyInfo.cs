@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("demka_podg1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4a2e8cbef1b3f2b05669fba165f63e07f50b9e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("demka_podg1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("demka_podg1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -170,3 +170,4 @@ C:\Users\egors\OneDrive\Desktop\программирование\C#\demka_podg1\
 C:\Users\egors\OneDrive\Desktop\программирование\C#\demka_podg1\demka_podg1\obj\Debug\net9.0\demka_podg1.pdb
 C:\Users\egors\OneDrive\Desktop\программирование\C#\demka_podg1\demka_podg1\obj\Debug\net9.0\demka_podg1.genruntimeconfig.cache
 C:\Users\egors\OneDrive\Desktop\программирование\C#\demka_podg1\demka_podg1\obj\Debug\net9.0\ref\demka_podg1.dll
+C:\Users\egors\OneDrive\Desktop\программирование\C#\demka_podg1\demka_podg1\obj\Debug\net9.0\demka_podg1.sourcelink.json

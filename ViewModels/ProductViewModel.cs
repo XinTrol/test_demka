@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tmds.DBus.Protocol;
 
 namespace demka_podg1.ViewModels
 {
@@ -151,5 +152,25 @@ namespace demka_podg1.ViewModels
         {
             MainWindowViewModel.Instance.CurrentViewModel = new AddOrEditProductsViewModel(CurrentUser);
         }
+
+        [RelayCommand]
+        private void Delete(string article)
+        {
+            bool inOrders = db.OrderProducts.Any(op => op.ProductId == article);
+            if (inOrders)
+            {
+                return;
+            }
+
+            var pr = db.Products.FirstOrDefault(x => x.Id == article);
+            if (pr == null)
+                return;
+
+            db.Products.Remove(pr);
+            db.SaveChanges();
+
+            LoadProducts();
+        }
     }
 }
+
